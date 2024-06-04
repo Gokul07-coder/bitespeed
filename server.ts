@@ -1,6 +1,8 @@
 import Iserver from "./src/interface/IServer";
 import App from "./src/app";
 const app = new App();
+import config from "./src/configs";
+import connection from "./src/configs/database";
 
 class Server extends Iserver {
   app: App;
@@ -12,14 +14,24 @@ class Server extends Iserver {
   }
 
   startServer(): void {
-    this.app.app.listen(3000, () => {
-      console.log("Server is running on port 3000");
-      console.log("Access server in browser: http://localhost:3000");
+    this.app.app.listen(config.PORT || 3000, () => {
+      console.log(`Server is running on port ${config.PORT}`);
+      if (config.NODE_ENV === "dev")
+        console.log(
+          `Access server in browser: http://localhost:${config.PORT}`
+        );
     });
   }
 
   dbConnection(): void {
-    console.log("DB connected");
+    connection
+      .connect()
+      .then(() => {
+        console.log("Database connected");
+      })
+      .catch((err) => {
+        console.log("Error in connecting to database");
+      });
   }
 }
 

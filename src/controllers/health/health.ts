@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
 
 class Health {
-  health: String;
+  health: string;
   constructor() {
     this.health = "Application seems to be healthy!";
   }

@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 
 class Customer {
-  constructor() {
-    console.log("Customer controller");
-  }
+  constructor() {}
 
   identifyCustomer(req: Request, res: Response): void {
     console.log("Identify customer");
