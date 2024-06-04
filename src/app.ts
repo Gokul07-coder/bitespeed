@@ -5,6 +5,10 @@ import * as core from "express-serve-static-core";
 import cors from "cors";
 import router from "./routes/index";
 
+/*
+App class
+*/
+
 class App extends IApp {
   app: core.Express;
   constructor() {

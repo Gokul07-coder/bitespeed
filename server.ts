@@ -1,9 +1,11 @@
 import Iserver from "./src/interface/IServer";
 import App from "./src/app";
-const app = new App();
 import config from "./src/configs";
 import connection from "./src/configs/database";
 
+/*
+Server class
+*/
 class Server extends Iserver {
   app: App;
   constructor() {
