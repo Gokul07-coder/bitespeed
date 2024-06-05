@@ -1,7 +1,7 @@
-import Iserver from "./src/interface/IServer";
-import App from "./src/app";
-import config from "./src/configs";
-import connection from "./src/configs/database";
+import Iserver from "./interface/IServer";
+import App from "./app";
+import config from "./configs";
+import connection from "./configs/database";
 
 /*
 Server class
@@ -32,7 +32,7 @@ class Server extends Iserver {
         console.log("Database connected");
       })
       .catch((err) => {
-        console.log("Error in connecting to database");
+        console.log("Error in connecting to database",err);
       });
   }
 }

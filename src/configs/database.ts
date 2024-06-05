@@ -7,6 +7,7 @@ const connection = new Client({
   host: config.HOST,
   port: config.DB_PORT,
   database: config.DATABASE,
+  ssl: true,
 });
 
 export default connection;
