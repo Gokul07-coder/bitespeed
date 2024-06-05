@@ -4,6 +4,7 @@ import express from "express";
 import * as core from "express-serve-static-core";
 import cors from "cors";
 import router from "./routes/index";
+import { logger, rTracer, requestLoggerMiddleware } from "./utils/logger";
 
 /*
 App class
@@ -33,6 +34,15 @@ class App extends IApp {
   }
 
   setUpMiddleware(): void {
+    this.app.use(rTracer.expressMiddleware());
+    this.app.use(requestLoggerMiddleware);
+    this.app.use((req, res, next) => {
+      const str = ` IP: ${req.ip} Request: ${req.method} ${req.url} ${
+        req.body ? "JSON BODY IS INCLUDED" : "NO REQUEST BODY"
+      }`;
+      logger.info(str);
+      next();
+    });
     this.app.use((req, res, next) => {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader(
