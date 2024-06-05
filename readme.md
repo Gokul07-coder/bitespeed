@@ -24,4 +24,10 @@ Reconciliation identity service
 
 ## API Documentation
 
-Ensure healthCheck of the Application is working by `http://hostpath:3000/health`
+Ensure healthCheck of the Application is working by `http://hostpath:3000/api/v1/health`
+
+## Task Work
+
+1. Task work for an api endpoint named identify is done and can be accessed by `http://hostpath:3000/api/v1/identify`
+2. The above is an POST Request expecting an JSON Body and not an form-data
+3. Example json request { "email" : "", "phoneNumber" : "" }
