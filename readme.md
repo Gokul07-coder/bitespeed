@@ -49,7 +49,7 @@ Render free tier has an limitation making request after an certian amount of ina
 So kindly ensure health check before proceeding to test the identify endpoint
 Thanks !!!
 
-![note](./img/render.png.png?raw=true "Note")
+![note](./img/render.png?raw=true "Note")
 
 ## Logs sample image
 
