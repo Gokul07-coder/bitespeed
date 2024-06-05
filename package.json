@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build && tsc",
     "dev": "NODE_ENV=dev tsnd --transpile-only --respawn --exit-child src/server.ts",
-    "start": "NODE_ENV=prod node build/src/server.js"
+    "start": "npm run build && NODE_ENV=prod node build/src/server.js"
   },
   "keywords": [],
   "author": "",
