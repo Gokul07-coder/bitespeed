@@ -7,6 +7,7 @@ Reconciliation identity service
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
+- [Stacks Used](#stacks-used)
 
 ## Installation
 
@@ -26,8 +27,30 @@ Reconciliation identity service
 
 Ensure healthCheck of the Application is working by `http://hostpath:3000/api/v1/health`
 
+## Stacks Used
+
+1. Nodejs With Express framework and TYPESCRIPT as language
+2. PostgreSQL as Database
+
 ## Task Work
 
-1. Task work for an api endpoint named identify is done and can be accessed by `http://hostpath:3000/api/v1/identify`
+1. Task work for an api endpoint named identify is done and can be accessed by `http://hostpath:3000/api/v1/customers/identify`
 2. The above is an POST Request expecting an JSON Body and not an form-data
 3. Example json request { "email" : "", "phoneNumber" : "" }
+4. Logging is also done for capturing requests and the corresponding errors
+
+## The below is the sample request from postman
+
+![postman](./img/postman.png?raw=true "postman")
+
+## A Kind Note
+
+Render free tier has an limitation making request after an certian amount of inactivity makes the request take too long to respond
+So kindly ensure health check before proceeding to test the identify endpoint
+Thanks !!!
+
+![note](./img/render.png.png?raw=true "Note")
+
+## Logs sample image
+
+![logs](./img/logs.png?raw=true "Logs")
