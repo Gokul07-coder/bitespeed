@@ -1,4 +1,6 @@
 import { Response, Request } from "express";
+import { Customerror } from "../../utils/errorFormatter";
+let customerror = new Customerror();
 
 class Health {
   health: string;
@@ -7,7 +9,11 @@ class Health {
   }
 
   getHealth(req: Request, res: Response) {
-    res.send({ message: this.health, statusCode: 200 });
+    try {
+      res.send({ message: this.health, statusCode: 200 });
+    } catch (error) {
+      customerror.handleError("Internal server error", res);
+    }
   }
 }
 

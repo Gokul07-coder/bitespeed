@@ -1,7 +1,9 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { DBHelper } from "./dbHelper";
 import { bodyRequest, customerDetails, customersDetails } from "./interface";
+import { Customerror } from "../../utils/errorFormatter";
 const dbHelper = new DBHelper();
+const customerror = new Customerror("Something went wrong", 400);
 
 class Customer {
   async identifyCustomer(req: Request, res: Response): Promise<void> {
@@ -13,7 +15,7 @@ class Customer {
 
       //check if email or phone number is provided
       if (!email && !phoneNumber) {
-        res.status(400).json({ error: "Email or phone number is required" });
+        throw new Customerror("Email or phone number is required", 400);
       }
 
       //When is a secondary contact created? ---- condition
@@ -41,7 +43,7 @@ class Customer {
         let accountModification = await dbHelper.modifyCustomerAccount(data);
 
         if (!accountModification.status) {
-          throw new Error("Error in creating account");
+          throw new Customerror("Error in creating account", 500);
         } else {
           data.result[1] = accountModification.data[0];
           const resultResponse = dbHelper.responseFormatter(data.result);
@@ -72,7 +74,7 @@ class Customer {
           data.result.push(accountCreation.data[0]);
 
           if (!accountCreation.status) {
-            throw new Error("Error in creating account");
+            throw new Customerror("Error in creating account", 500);
           }
         } else if (accountCreation && phoneCheck) {
           //create an secondary account
@@ -85,7 +87,7 @@ class Customer {
           data.result.push(accountCreation.data[0]);
 
           if (!accountCreation.status) {
-            throw new Error("Error in creating account");
+            throw new Customerror("Error in creating account", 500);
           }
         }
 
@@ -97,7 +99,7 @@ class Customer {
           });
 
           if (!accountCreation.status) {
-            throw new Error("Error in creating account");
+            throw new Customerror("Error in creating account", 500);
           }
 
           const resultResponse = dbHelper.responseFormatter(
@@ -109,9 +111,9 @@ class Customer {
           res.send(resultResponse);
         }
       }
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
-      res.status(500).json({ error: "Internal server error" });
+      customerror.handleError(err, res);
     }
   }
 }
