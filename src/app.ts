@@ -60,6 +60,12 @@ class App extends IApp {
 
   setUpRoutes(): void {
     this.app.use("/api/v1", router);
+    this.app.use((req, res, next) => {
+      res.status(404).json({
+        error: 'Endpoint not found',
+        message: `The requested endpoint does not exist. add prefix /api/v1 to your endpoint 1. api/v1/health - GET  2. api/v1/customers/identify - POST`
+      });
+    });
   }
 }
 
