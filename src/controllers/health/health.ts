@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import { Customerror } from "../../utils/errorFormatter";
-let customerror = new Customerror();
+let customerror = new Customerror("Something went wrong", 500);
 
 class Health {
   health: string;

@@ -3,7 +3,7 @@ import { DBHelper } from "./dbHelper";
 import { bodyRequest, customerDetails, customersDetails } from "./interface";
 import { Customerror } from "../../utils/errorFormatter";
 const dbHelper = new DBHelper();
-const customerror = new Customerror("Something went wrong", 400);
+const customerror = new Customerror("Something went wrong", 500);
 
 class Customer {
   async identifyCustomer(req: Request, res: Response): Promise<void> {
